@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<style type="text/css">
+
+		body {
+			background-image: url(https://avatars.mds.yandex.net/get-pdb/1221543/d8adf72c-dd1c-4a0b-a09e-fa96e3f088fc/s1200);
+			background-size: 100%;
+			background-attachment: fixed;
+		}
+		.box {
+			background-image: url(paper_sheet_PNG7229.png);
+			background-size: 100% 100%;
+			height: 1200px;
+			display: none;
+			padding-top: 150px;
+		}
+		.gradus {
+			background-image: url(gradus.png);
+			background-size: 100% 100%;
+			height: 50px;
+			padding-top: 23px;
+		}
+		.dis_none {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="col-6 border mx-auto mt-5 rounded-pill text-center p-5 border-dark nachalo" style="background-color: white">
+		<h1>Готов поставить диагноз?</h1>
+		<button class="btn btn-success mt-5 rounded-circle btn_nachalo">Да!</button>
+	</div>
+
+	<div class="col-8 box mx-auto">
+		<div class="col-11 p-5 pt-0">
+			<h1 class="text-center">Пациент № 121</h1>
+			<div class="box1">
+				<h2>Жалобы: Кашель, отделение макроты и сбивчивое дыхание</h2>
+				<h2 class="mt-4">Ваши очки: <span class="score"></span></h2>
+				<h2>Ваши дейтсвия:</h2>
+
+				<h2><li class="temp">Померить температуру</li></h2>
+				<div class="col-8 gradus dis_none">
+					<div id="temp1" class="col-1 bg-danger" style="height: 5px;transition: 1s;"></div>
+				</div>
+
+				<h2><li class="sprosit">Распросить пациента</li></h2>
+				<h3><i class="dis_none beseda">В ходе беседы пациент добавил о кровохарканье и о влажном кашле с мокротой</i></h3>
+				
+				<h2><li class="analis">Сдать анализы</li></h2>
+				<h3><i class="analis1 dis_none">Показания анализов: Снижение общего количества лейкоцитов (лейкопения)</i></h3>
+
+				<h2><li class="rengen">Сделать рентген</li></h2>
+				<h3><i class="dis_none pokazaniya">Показания ренгена обнаружили жидкость в легких</i></h3>
+				<div class="row">
+					<h2>Пациент № 121 болен </h2>
+					<button class="btn btn-secondary ml-3 otv">
+					    Туберкулез
+					</button>
+					<button class="btn btn-secondary ml-3 otv">
+					    Коронавирус
+					</button>
+					<button class="btn btn-secondary ml-3 otv">
+					    Пневмония
+					</button>
+	
+				</div>
+			</div>
+			<div class="box2 dis_none text-center mt-4">
+				<h2>Был болен пневмонией</h2>
+				<h2>Вы <span class="otvet"></span> поставили диагноз</h2>
+				<h2>Вас счет: <span class="chet"></span></h2>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+			let nachalo = document.querySelector(".nachalo")
+			let btn_nachalo = document.querySelector(".btn_nachalo")
+			let box = document.querySelector(".box")
+			let box1 = document.querySelector(".box1")
+			let box2 = document.querySelector(".box2")
+			let temp = document.querySelector(".temp")
+			let temp1 = document.getElementById("temp1")
+			let gradus = document.querySelector(".gradus")
+			let rengen = document.querySelector(".rengen")
+			let pokazaniya = document.querySelector(".pokazaniya")
+			let beseda = document.querySelector(".beseda")
+			let sprosit = document.querySelector(".sprosit")
+			let analis = document.querySelector(".analis")
+			let analis1 = document.querySelector(".analis1")
+			let score1 = document.querySelector(".score")
+			let btn = document.querySelectorAll(".otv")
+			let otvet = document.querySelector(".otvet")
+			let chet1 = document.querySelector(".chet")
+			let chet = 100
+			let score = 11
+			let a = 0
+			let b = 0
+			let c = 0
+			let d = 0
+
+			btn_nachalo.onclick = function(){
+				nachalo.style.opacity = 0;
+				nachalo.style.transition = "1.5s"
+				setInterval(poyavlenie, 1200)
+			}
+			let poyavlenie = function(){
+				nachalo.style.display = "none"
+				box.style.display = "block"
+			}
+			score1.innerHTML = score
+			temp.onclick = function(){
+				gradus.style.display = "block"
+				if (a == 0){
+					score = score - 1
+					score1.innerHTML = score
+				}
+				a = 1
+			}
+			gradus.onclick = function(){
+				temp1.classList.remove("col-1")
+				temp1.classList.add("col-10")
+			}
+			sprosit.onclick = function(){
+				beseda.style.display = "block"
+				if (b == 0) {
+					score = score - 2
+					score1.innerHTML = score
+				}
+				b = 1
+			}
+			analis.onclick = function(){
+				analis1.style.display = "block"
+				if (c == 0) {
+					score = score - 3
+					score1.innerHTML = score
+				}
+				c = 1
+			}
+			rengen.onclick = function(){
+				pokazaniya.style.display = "block"
+				if (d == 0) {
+					score = score - 4
+					score1.innerHTML = score
+				}
+				d = 1
+			}
+			for (let n = 0;n < 3;n++){
+				btn[n].onclick = function(){
+					box1.style.display = "none"
+					box2.style.display = "block"
+					if (n == 2) {
+						otvet.innerHTML = "правильно"
+						otvet.style.color = "green"
+					}
+					else {
+						otvet.innerHTML = "неправильно"
+						otvet.style.color = "red"
+					}
+					chet = chet * score - 100
+					chet1.innerHTML = chet
+				}
+			}
+
+	</script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
